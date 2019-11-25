@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>为什么神经网络越深越好</title>
-      <link href="/2019/11/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%B6%8A%E6%B7%B1%E8%B6%8A%E5%A5%BD/"/>
-      <url>/2019/11/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%B6%8A%E6%B7%B1%E8%B6%8A%E5%A5%BD/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在StackExchange上看到的一个帖子，<a href="https://stats.stackexchange.com/questions/182734/what-is-the-difference-between-a-neural-network-and-a-deep-neural-network-and-w" target="_blank" rel="noopener">What is the difference between a neural network and a deep neural network, and why do the deep ones work better?</a>，讨论的是“深度”对于神经网络的影响。为什么深度学习的模型越来深呢？大量的文章告诉我们越深的模型表现越好，而实际中各种比赛的冠军模型也越来越深。</p><a id="more"></a><img src="/images/20191124-1.png" width="50%" height="50%" title="ImageNet." alt="ImageNet"><p>在Deep Learning那本书中，我们也能看到一样的结果。</p><img src="/images/20191124-2.png" width="50%" height="50%" title="DeepLearning." alt="Book:DeepLearning"><p>在知乎的帖子<a href="https://www.zhihu.com/question/313633835" target="_blank" rel="noopener">网络深度对深度学习模型性能有什么影响？</a>中，答主言有三从两个方面解释了<u>为什么加深可以提升性能</u>：<strong>1.更好的拟合特征，更强大的表达能力。更深的模型，意味着更好的非线性表达能力，可以学习更加复杂的变换，从而可以拟合更加复杂的特征输入。2.网络更深，每一层要做的事情也更加简单了，可以更好地进行逐层学习。</strong></p><p>同时他也提到了<u>模型变深后带来的两个问题</u>：<strong>1.加深带来的优化问题。深层网络带来的梯度不稳定，网络退化的问题始终都是存在的，可以缓解，没法消除。这就有可能出现网络加深，性能反而开始下降。2.网络加深带来的饱和。随着深度的增加，模型的提升效果逐渐饱和。除此之外，模型加深还可能出现的一些问题是导致某些浅层的学习能力下降，限制了深层网络的学习，这也是跳层连接等结构能够发挥作用的很重要的因素。</strong>模型变深怎么也绕不开ResNet，最近看了很多关于ResNet的文章，对它有了一些新的认识，后面会写一篇ResNet的文章分享。</p><p>另一篇知乎的帖子<a href="https://www.zhihu.com/question/62705160/answer/201377484" target="_blank" rel="noopener">如何形象的解释深度学习神经网络需要更深而非更广？</a>，一个答主引用Yoshua Begio的paper-<a href="https://papers.nips.cc/paper/5422-on-the-number-of-linear-regions-of-deep-neural-networks.pdf" target="_blank" rel="noopener">On the Number of Linear Regions of Deep Neural Networks</a>的观点（前面的那篇帖子中也提到了这个，后面会写一篇这篇paper的总结）。主要的观点是：<strong>使用ReLU、MaxOut等非线性单元的神经网络在数学上相当于一个分片线性函数，线性区域(linear region)越多，神经网络的非线性就越强，也就更有可能在实际任务中取得好的效果。</strong></p><p>另一个角度的解释是</p><blockquote><p>通常来说，卷积核的大小通常为3*3或者5*5，相对于图片几百乘几百的大小来说，那么小的卷积核一次只能覆盖很小的区域，所以浅层小卷积核只能探测到诸如边或者角这种比较低层次的特征。<strong>随着网络深度的增加，卷积核的有效感受野越来越大，也就意味着高层的卷积核能够覆盖更大尺度上的特征</strong>。也可以认为高层的卷积核将低层卷积核学习到的特征进行了组合。那么问题来了，增加宽度我们说是增加了某一层卷积核的个数，也就意味着探测到的低层次特征理论上变多了。如果仅仅是增加宽度而深度不够，那么最后输出的高层特征仅仅组合了较少的低层特征，比如低层的卷积核探测到了眼睛鼻子和尾巴，第四层可以把眼睛和鼻子组合起来，但是尾巴距离眼睛比较远，可能需要第六层的卷积核的有效感受野才能同时探测到尾巴和眼睛，所以说如果现在网络只有四层，很有可能不能结合距离较远的两个特征。所以说深度很重要，因为更深的卷积核的有效感受野越大，能够组合的低层特征越多。图像分类任务最终的分类依据应该是丰富的低层特征组合而不是分散的低层特征。</p><p>作者：Terence Wu</p></blockquote><p>综上所述，模型越来越深背后的理论和实践解释：</p><ol><li>“a naive answer is that because they work better”；</li><li>更深的模型可以更好的拟合特征；</li><li>网络更深，每一层要做的事情也更加简单了，可以更好地进行逐层学习；</li><li>使用非线性单元（RELU、Maxout等）的神经网络，网络越深，特征空间被分割得到的线性区域越多，模型的表现越好。</li></ol>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>为什么神经网络越深越好</title>
+    <url>/2019/11/24/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%B6%8A%E6%B7%B1%E8%B6%8A%E5%A5%BD/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%B6%8A%E6%B7%B1%E8%B6%8A%E5%A5%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在StackExchange上看到的一个帖子，<a href="https://stats.stackexchange.com/questions/182734/what-is-the-difference-between-a-neural-network-and-a-deep-neural-network-and-w" target="_blank" rel="noopener">What is the difference between a neural network and a deep neural network, and why do the deep ones work better?</a>，讨论的是“深度”对于神经网络的影响。为什么深度学习的模型越来深呢？大量的文章告诉我们越深的模型表现越好，而实际中各种比赛的冠军模型也越来越深。</p><a id="more"></a>
+<img src="20191124-1.png" width="50%" height="50%" title="ImageNet." alt="ImageNet">
+
+<p>在Deep Learning那本书中，我们也能看到一样的结果。</p>
+<img src="20191124-2.png" width="50%" height="50%" title="DeepLearning." alt="Book:DeepLearning">
+
+<p>在知乎的帖子<a href="https://www.zhihu.com/question/313633835" target="_blank" rel="noopener">网络深度对深度学习模型性能有什么影响？</a>中，答主言有三从两个方面解释了<u>为什么加深可以提升性能</u>：<strong>1.更好的拟合特征，更强大的表达能力。更深的模型，意味着更好的非线性表达能力，可以学习更加复杂的变换，从而可以拟合更加复杂的特征输入。2.网络更深，每一层要做的事情也更加简单了，可以更好地进行逐层学习。</strong></p>
+<p>同时他也提到了<u>模型变深后带来的两个问题</u>：<strong>1.加深带来的优化问题。深层网络带来的梯度不稳定，网络退化的问题始终都是存在的，可以缓解，没法消除。这就有可能出现网络加深，性能反而开始下降。2.网络加深带来的饱和。随着深度的增加，模型的提升效果逐渐饱和。除此之外，模型加深还可能出现的一些问题是导致某些浅层的学习能力下降，限制了深层网络的学习，这也是跳层连接等结构能够发挥作用的很重要的因素。</strong>模型变深怎么也绕不开ResNet，最近看了很多关于ResNet的文章，对它有了一些新的认识，后面会写一篇ResNet的文章分享。</p>
+<p>另一篇知乎的帖子<a href="https://www.zhihu.com/question/62705160/answer/201377484" target="_blank" rel="noopener">如何形象的解释深度学习神经网络需要更深而非更广？</a>，一个答主引用Yoshua Begio的paper-<a href="https://papers.nips.cc/paper/5422-on-the-number-of-linear-regions-of-deep-neural-networks.pdf" target="_blank" rel="noopener">On the Number of Linear Regions of Deep Neural Networks</a>的观点（前面的那篇帖子中也提到了这个，后面会写一篇这篇paper的总结）。主要的观点是：<strong>使用ReLU、MaxOut等非线性单元的神经网络在数学上相当于一个分片线性函数，线性区域(linear region)越多，神经网络的非线性就越强，也就更有可能在实际任务中取得好的效果。</strong></p>
+<p>另一个角度的解释是</p>
+<blockquote>
+<p>通常来说，卷积核的大小通常为3*3或者5*5，相对于图片几百乘几百的大小来说，那么小的卷积核一次只能覆盖很小的区域，所以浅层小卷积核只能探测到诸如边或者角这种比较低层次的特征。<strong>随着网络深度的增加，卷积核的有效感受野越来越大，也就意味着高层的卷积核能够覆盖更大尺度上的特征</strong>。也可以认为高层的卷积核将低层卷积核学习到的特征进行了组合。那么问题来了，增加宽度我们说是增加了某一层卷积核的个数，也就意味着探测到的低层次特征理论上变多了。如果仅仅是增加宽度而深度不够，那么最后输出的高层特征仅仅组合了较少的低层特征，比如低层的卷积核探测到了眼睛鼻子和尾巴，第四层可以把眼睛和鼻子组合起来，但是尾巴距离眼睛比较远，可能需要第六层的卷积核的有效感受野才能同时探测到尾巴和眼睛，所以说如果现在网络只有四层，很有可能不能结合距离较远的两个特征。所以说深度很重要，因为更深的卷积核的有效感受野越大，能够组合的低层特征越多。图像分类任务最终的分类依据应该是丰富的低层特征组合而不是分散的低层特征。</p>
+<p>作者：Terence Wu</p>
+</blockquote>
+<p>综上所述，模型越来越深背后的理论和实践解释：</p>
+<ol>
+<li>“a naive answer is that because they work better”；</li>
+<li>更深的模型可以更好的拟合特征；</li>
+<li>网络更深，每一层要做的事情也更加简单了，可以更好地进行逐层学习；</li>
+<li>使用非线性单元（RELU、Maxout等）的神经网络，网络越深，特征空间被分割得到的线性区域越多，模型的表现越好。</li>
+</ol>
+]]></content>
       <categories>
-          
-          <category> 深度学习 </category>
-          
+        <category>深度学习</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习笔记 </tag>
-            
-            <tag> 深度学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
 </search>
