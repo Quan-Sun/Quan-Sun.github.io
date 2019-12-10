@@ -49,7 +49,14 @@ highlight:
   line_number: true
   auto_detect: true
   tab_replace: ''
-mathjax: true
+
+math:
+  engine: 'mathjax' # or 'katex'
+  mathjax:
+    # src: custom_mathjax_source
+    config:
+      # MathJax config
+
 toc: true # catalog
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
