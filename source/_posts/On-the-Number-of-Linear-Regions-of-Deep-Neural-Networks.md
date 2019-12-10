@@ -12,9 +12,7 @@ categories:
 
 使用ReLU等非线性单元的神经网络相当于一个分片线性函数，线性区域越多，神经网络的非线性就越强，网络的效果可能就更好。这篇文章讨论了在神经元总数一样的情况下，增加网络的深度可以产生更多的线性区域。文章中使用折纸类比了这个过程。
 
-<img src="On-the-Number-of-Linear-Regions-of-Deep-Neural-Networks/image-20191209181524633.png" title="李宏毅Deep Structure PPT" alt="source: [李宏毅Deep Structure PPT](http://speech.ee.ntu.edu.tw/~tlkagk/courses/MLDS_2018/Lecture/DeepStructure%20(v9).pptx)"/>
-
-​								
+<img src="On-the-Number-of-Linear-Regions-of-Deep-Neural-Networks/image-20191209181524633.png" title="李宏毅Deep Structure PPT"/>						
 
 以ReLU为例，我们知道ReLU单元$y=ReLU(Wx+b)$会在输入空间中产生一个超平面$Wx+b=0$,把输入空间分成两部分，一部分的空间输出值为常数0，另一个空间的输出为$y=Wx+b$。可以看到一个分片线性函数会产生两个线性区域。那么如果输入空间是二维，就像一张纸沿着$Wx+b=0$折一下，再打开，会产生两个线性区域。
 
