@@ -4,19 +4,19 @@ date: 2019-11-23 21:30:21
 
 ---
 
-我叫孙泉，希望通过这个博客记录自己的学习过程。
+"Do not ask whether a statement is true until you know what it means."
 
-教育经历
+Education
 
-- 2018/8 - 2019/12 康奈尔大学生物医学工程专业 硕士 
-- 2015/9 - 2018/5 北京航空航天大学生物医学专业 硕士
-- 2010/9 - 2014/5 天津科技大学材料化学专业 学士
+- 2018/8 - 2019/12    Cornell University	Biomedical Engineering	Master of Engineering
+- 2015/9 - 2018/5    Beihang University    Biomedical Engineering	Master of Engineering
+- 2010/9 - 2014/5    Tianjin University of Science and Technology    Materials Chemistry    Bachelor of Science
 
-实习经历
+Internship
 
-- 2019/6 - 2019/8 腾讯AI平台部推荐算法组 算法工程师
+- 2019/6 - 2019/8    Tencent	Algorithm Engineer
 
-邮箱    qs84@cornell.edu
+Email    qs84@cornell.edu
 
 
 
