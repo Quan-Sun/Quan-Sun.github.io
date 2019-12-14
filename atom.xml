@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quan-sun.github.io/"/>
-  <updated>2019-12-14T16:14:01.239Z</updated>
+  <updated>2019-12-14T21:23:23.086Z</updated>
   <id>https://quan-sun.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AlexNet</title>
+    <link href="https://quan-sun.github.io/2019/12/14/AlexNet/"/>
+    <id>https://quan-sun.github.io/2019/12/14/AlexNet/</id>
+    <published>2019-12-14T21:20:48.000Z</published>
+    <updated>2019-12-14T21:23:23.086Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">ImageNet Classification with Deep Convolutional Neural Networks</a></p><p>AlexNet是2012年ILSVRC的冠军模型，top-5 error rate达到15.3%，甩了第二名10.8%，完全碾压其他传统的依赖hand-craft特征的计算机视觉方法。它的出现绝对是深度学习的里程碑，这是第一次在大规模的数据集上实现了深层卷积网络的结构，从此开始了深度学习的热潮。</p><h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="/2019/12/14/AlexNet/image-20191214153724495.png" alt="image-20191214153724495"></p><p>AlexNet总共有8哥权重层，其中包括5个卷积层和3个全连接层。</p><p><img src="/2019/12/14/AlexNet/alexnet.png" alt="architecture"></p><p>第1、2卷积层后连有LRN(Local Response Normalization)层，每个LRN及最后层卷积层后跟有最大池化层，并且每个权重层均有RELU激活函数。全连接后使用dropout解决过拟合。</p><a id="more"></a><table><thead><tr><th align="center">layer</th><th align="center">Stride</th><th align="center">Kernel size</th><th align="center">feature map</th><th align="center">PADDING</th></tr></thead><tbody><tr><td align="center">Conv1</td><td align="center">4</td><td align="center">$11<em>11</em>96$</td><td align="center">$55<em>55</em>96$</td><td align="center">0</td></tr><tr><td align="center">Pooling1</td><td align="center">2</td><td align="center">$3*3$</td><td align="center">$27<em>27</em>96$</td><td align="center">0</td></tr><tr><td align="center">Conv2</td><td align="center">1</td><td align="center">$5<em>5</em>256$</td><td align="center">$27<em>27</em>256$</td><td align="center">2</td></tr><tr><td align="center">Pooling2</td><td align="center">2</td><td align="center">$3*3$</td><td align="center">$13<em>13</em>256$</td><td align="center">0</td></tr><tr><td align="center">Conv3</td><td align="center">1</td><td align="center">$3<em>3</em>384$</td><td align="center">$13<em>13</em>384$</td><td align="center">1</td></tr><tr><td align="center">Conv4</td><td align="center">1</td><td align="center">$3<em>3</em>384$</td><td align="center">$13<em>13</em>384$</td><td align="center">1</td></tr><tr><td align="center">Conv5</td><td align="center">1</td><td align="center">$3<em>3</em>256$</td><td align="center">$13<em>13</em>256$</td><td align="center">1</td></tr><tr><td align="center">Pooling5</td><td align="center">2</td><td align="center">$3*3$</td><td align="center">$6<em>6</em>256$</td><td align="center">0</td></tr><tr><td align="center">FC6</td><td align="center"></td><td align="center"></td><td align="center">4096</td><td align="center"></td></tr><tr><td align="center">FC7</td><td align="center"></td><td align="center"></td><td align="center">4096</td><td align="center"></td></tr><tr><td align="center">FC8</td><td align="center"></td><td align="center"></td><td align="center">1000</td><td align="center"></td></tr></tbody></table><h2 id="网络特点"><a href="#网络特点" class="headerlink" title="网络特点"></a>网络特点</h2><p>1.Training on Multiple GPUs</p><p>2.ReLU Nonlinearity</p><p>传统神经网络激活函数通常为反正切或是sigmoid，AlexNet使用RELU作为激活函数，相比于反正切，该方法训练速度大约有6倍提升。</p><p>3.Local Response Normalization</p><p><img src="/2019/12/14/AlexNet/image-20191214160951499.png" alt="LRN"></p><p>LRN加在RELU的激活后面，能够增加网络的泛化能力，并在ILSVRC-2012上降低1%的错误率。不过后来的网络证明了LRN并非CNN中必须包含的层，甚至有些网络加入LRN后模型表现反而降低了。</p><p>4.Overlapping Pooling</p><p>重叠池化是指池化步伐小于kernel size，池化后的feature map的感受野其实是有部分重叠的,文章指出这样做可以防止过拟合。但是，后面的网络鲜有继续使用的，因为有更好的防止过拟合的技术出现，比如BN已经可以解决过拟合的问题。</p><p>5.Data Augmentation</p><p>使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256<em>256$，然后从中随机crop出$224</em>224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。</p><p>6.Dropout</p><p>Dropout通过训练时随机丢弃部分神经元从而减少过拟合的风险。这么做也可以迫使这些神经元去学习互补的一些特征。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; class=&quot;aplayer-secondary-script-marker&quot;&gt;&lt;/script&gt;&lt;p&gt;&lt;a href=&quot;https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ImageNet Classification with Deep Convolutional Neural Networks&lt;/a&gt;&lt;/p&gt;&lt;p&gt;AlexNet是2012年ILSVRC的冠军模型，top-5 error rate达到15.3%，甩了第二名10.8%，完全碾压其他传统的依赖hand-craft特征的计算机视觉方法。它的出现绝对是深度学习的里程碑，这是第一次在大规模的数据集上实现了深层卷积网络的结构，从此开始了深度学习的热潮。&lt;/p&gt;&lt;h2 id=&quot;网络结构&quot;&gt;&lt;a href=&quot;#网络结构&quot; class=&quot;headerlink&quot; title=&quot;网络结构&quot;&gt;&lt;/a&gt;网络结构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/2019/12/14/AlexNet/image-20191214153724495.png&quot; alt=&quot;image-20191214153724495&quot;&gt;&lt;/p&gt;&lt;p&gt;AlexNet总共有8哥权重层，其中包括5个卷积层和3个全连接层。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/2019/12/14/AlexNet/alexnet.png&quot; alt=&quot;architecture&quot;&gt;&lt;/p&gt;&lt;p&gt;第1、2卷积层后连有LRN(Local Response Normalization)层，每个LRN及最后层卷积层后跟有最大池化层，并且每个权重层均有RELU激活函数。全连接后使用dropout解决过拟合。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="深度学习" scheme="https://quan-sun.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="学习笔记" scheme="https://quan-sun.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="深度学习" scheme="https://quan-sun.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="CV" scheme="https://quan-sun.github.io/tags/CV/"/>
+    
+  </entry>
   
   <entry>
     <title>Tips to make GANs work</title>

@@ -48,22 +48,22 @@
   };
 </script>
 
-  <meta name="description" content="A great git repo with 7.6k stars about training GANs.While research in Generative Adversarial Networks (GANs) continues to improve the fundamental stability of these models, we use a bunch of tricks t">
-<meta name="keywords" content="学习笔记,深度学习">
+  <meta name="description" content="ImageNet Classification with Deep Convolutional Neural NetworksAlexNet是2012年ILSVRC的冠军模型，top-5 error rate达到15.3%，甩了第二名10.8%，完全碾压其他传统的依赖hand-craft特征的计算机视觉方法。它的出现绝对是深度学习的里程碑，这是第一次在大规模的数据集上实现了深层卷积网络的结构，从此">
+<meta name="keywords" content="学习笔记,深度学习,CV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tips to make GANs work">
-<meta property="og:url" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;Tips-to-make-GANs-work&#x2F;index.html">
+<meta property="og:title" content="AlexNet">
+<meta property="og:url" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;AlexNet&#x2F;index.html">
 <meta property="og:site_name" content="孙泉的博客">
-<meta property="og:description" content="A great git repo with 7.6k stars about training GANs.While research in Generative Adversarial Networks (GANs) continues to improve the fundamental stability of these models, we use a bunch of tricks t">
+<meta property="og:description" content="ImageNet Classification with Deep Convolutional Neural NetworksAlexNet是2012年ILSVRC的冠军模型，top-5 error rate达到15.3%，甩了第二名10.8%，完全碾压其他传统的依赖hand-craft特征的计算机视觉方法。它的出现绝对是深度学习的里程碑，这是第一次在大规模的数据集上实现了深层卷积网络的结构，从此">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;Tips-to-make-GANs-work&#x2F;cube.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;Tips-to-make-GANs-work&#x2F;sphere.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;Tips-to-make-GANs-work&#x2F;batchmix.png">
-<meta property="og:updated_time" content="2019-12-14T16:14:01.239Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;AlexNet&#x2F;image-20191214153724495.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;AlexNet&#x2F;alexnet.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;AlexNet&#x2F;image-20191214160951499.png">
+<meta property="og:updated_time" content="2019-12-14T21:23:23.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;Tips-to-make-GANs-work&#x2F;cube.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;quan-sun.github.io&#x2F;2019&#x2F;12&#x2F;14&#x2F;AlexNet&#x2F;image-20191214153724495.png">
 
-<link rel="canonical" href="https://quan-sun.github.io/2019/12/14/Tips-to-make-GANs-work/">
+<link rel="canonical" href="https://quan-sun.github.io/2019/12/14/AlexNet/">
 
 
 <script id="page-configurations">
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title>Tips to make GANs work | 孙泉的博客</title>
+  <title>AlexNet | 孙泉的博客</title>
   
 
 
@@ -223,7 +223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://quan-sun.github.io/2019/12/14/Tips-to-make-GANs-work/">
+    <link itemprop="mainEntityOfPage" href="https://quan-sun.github.io/2019/12/14/AlexNet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -236,7 +236,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Tips to make GANs work
+          AlexNet
         </h1>
 
         <div class="post-meta">
@@ -247,7 +247,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-14 11:02:41 / 修改时间：11:14:01" itemprop="dateCreated datePublished" datetime="2019-12-14T11:02:41-05:00">2019-12-14</time>
+              <time title="创建时间：2019-12-14 16:20:48 / 修改时间：16:23:23" itemprop="dateCreated datePublished" datetime="2019-12-14T16:20:48-05:00">2019-12-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -277,8 +277,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2019/12/14/Tips-to-make-GANs-work/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/14/Tips-to-make-GANs-work/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/12/14/AlexNet/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/14/AlexNet/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -293,128 +293,112 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>A great <a href="https://github.com/soumith/ganhacks" target="_blank" rel="noopener">git repo</a> with 7.6k stars about training GANs.</p><p>While research in Generative Adversarial Networks (GANs) continues to improve the fundamental stability of these models, we use a bunch of tricks to train them and make them stable day to day.</p><h3 id="Normalize-the-inputs"><a href="#Normalize-the-inputs" class="headerlink" title="Normalize the inputs"></a>Normalize the inputs</h3><ul>
-<li>normalize the images between -1 and 1</li>
-<li>Tanh as the last layer of the generator output</li>
-</ul><a id="more"></a>
+        <p><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">ImageNet Classification with Deep Convolutional Neural Networks</a></p><p>AlexNet是2012年ILSVRC的冠军模型，top-5 error rate达到15.3%，甩了第二名10.8%，完全碾压其他传统的依赖hand-craft特征的计算机视觉方法。它的出现绝对是深度学习的里程碑，这是第一次在大规模的数据集上实现了深层卷积网络的结构，从此开始了深度学习的热潮。</p><h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="/2019/12/14/AlexNet/image-20191214153724495.png" alt="image-20191214153724495"></p><p>AlexNet总共有8哥权重层，其中包括5个卷积层和3个全连接层。</p><p><img src="/2019/12/14/AlexNet/alexnet.png" alt="architecture"></p><p>第1、2卷积层后连有LRN(Local Response Normalization)层，每个LRN及最后层卷积层后跟有最大池化层，并且每个权重层均有RELU激活函数。全连接后使用dropout解决过拟合。</p><a id="more"></a>
 
 
-<h3 id="A-modified-loss-function"><a href="#A-modified-loss-function" class="headerlink" title="A modified loss function"></a>A modified loss function</h3><p>In GAN papers, the loss function to optimize G is <code>min (log 1-D)</code>, but in practice folks practically use <code>max log D</code></p>
-<ul>
-<li>because the first formulation has vanishing gradients early on Goodfellow et. al (2014)</li>
-</ul>
-<p>In practice, works well:</p>
-<ul>
-<li>Flip labels when training generator: real = fake, fake = real</li>
-</ul>
-<p>Use a spherical Z</p>
-<ul>
-<li>Don’t sample from a Uniform distribution</li>
-</ul>
-<p><img src="/2019/12/14/Tips-to-make-GANs-work/cube.png" alt="cube" title="Cube"></p>
-<ul>
-<li>Sample from a gaussian distribution</li>
-</ul>
-<p><img src="/2019/12/14/Tips-to-make-GANs-work/sphere.png" alt="sphere" title="Sphere"></p>
-<ul>
-<li>When doing interpolations, do the interpolation via a great circle, rather than a straight line from point A to point B</li>
-<li>Tom White’s <a href="https://arxiv.org/abs/1609.04468" target="_blank" rel="noopener">Sampling Generative Networks</a> ref code <a href="https://github.com/dribnet/plat" target="_blank" rel="noopener">https://github.com/dribnet/plat</a> has more details</li>
-</ul>
-<h3 id="BatchNorm"><a href="#BatchNorm" class="headerlink" title="BatchNorm"></a>BatchNorm</h3><ul>
-<li>Construct different mini-batches for real and fake, i.e. each mini-batch needs to contain only all real images or all generated images.</li>
-<li>when batchnorm is not an option use instance normalization (for each sample, subtract mean and divide by standard deviation).</li>
-</ul>
-<p><img src="/2019/12/14/Tips-to-make-GANs-work/batchmix.png" alt="batchmix" title="BatchMix"></p>
-<h3 id="Avoid-Sparse-Gradients-ReLU-MaxPool"><a href="#Avoid-Sparse-Gradients-ReLU-MaxPool" class="headerlink" title="Avoid Sparse Gradients: ReLU, MaxPool"></a>Avoid Sparse Gradients: ReLU, MaxPool</h3><ul>
-<li>the stability of the GAN game suffers if you have sparse gradients</li>
-<li>LeakyReLU = good (in both G and D)</li>
-<li>For Downsampling, use: Average Pooling, Conv2d + stride</li>
-<li>For Up sampling, use: Pixel Shuffle, ConvTranspose2d + stride<ul>
-<li>Pixel Shuffle: <a href="https://arxiv.org/abs/1609.05158" target="_blank" rel="noopener">https://arxiv.org/abs/1609.05158</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="Use-Soft-and-Noisy-Labels"><a href="#Use-Soft-and-Noisy-Labels" class="headerlink" title="Use Soft and Noisy Labels"></a>Use Soft and Noisy Labels</h3><ul>
-<li>Label Smoothing, i.e. if you have two target labels: Real=1 and Fake=0, then for each incoming sample, if it is real, then replace the label with a random number between 0.7 and 1.2, and if it is a fake sample, replace it with 0.0 and 0.3 (for example).<ul>
-<li>Salimans et. al. 2016</li>
-</ul>
-</li>
-<li>make the labels the noisy for the discriminator: occasionally flip the labels when training the discriminator</li>
-</ul>
-<h3 id="DCGAN-Hybrid-Models"><a href="#DCGAN-Hybrid-Models" class="headerlink" title="DCGAN / Hybrid Models"></a>DCGAN / Hybrid Models</h3><ul>
-<li>Use DCGAN when you can. It works!</li>
-<li>if you cant use DCGANs and no model is stable, use a hybrid model :  KL + GAN or VAE + GAN</li>
-</ul>
-<h3 id="Use-stability-tricks-from-RL"><a href="#Use-stability-tricks-from-RL" class="headerlink" title="Use stability tricks from RL"></a>Use stability tricks from RL</h3><ul>
-<li>Experience Replay<ul>
-<li>Keep a replay buffer of past generations and occasionally show them</li>
-<li>Keep checkpoints from the past of G and D and occasionally swap them out for a few iterations</li>
-</ul>
-</li>
-<li>All stability tricks that work for deep deterministic policy gradients</li>
-<li>See Pfau &amp; Vinyals (2016)</li>
-</ul>
-<h3 id="Use-the-ADAM-Optimizer"><a href="#Use-the-ADAM-Optimizer" class="headerlink" title="Use the ADAM Optimizer"></a>Use the ADAM Optimizer</h3><ul>
-<li>optim.Adam rules!<ul>
-<li>See Radford et. al. 2015</li>
-</ul>
-</li>
-<li>Use SGD for discriminator and ADAM for generator</li>
-</ul>
-<h3 id="Track-failures-early"><a href="#Track-failures-early" class="headerlink" title="Track failures early"></a>Track failures early</h3><ul>
-<li>D loss goes to 0: failure mode</li>
-<li>check norms of gradients: if they are over 100 things are screwing up</li>
-<li>when things are working, D loss has low variance and goes down over time vs having huge variance and spiking</li>
-<li>if loss of generator steadily decreases, then it’s fooling D with garbage (says martin)</li>
-</ul>
-<h3 id="Don’t-balance-loss-via-statistics-unless-you-have-a-good-reason-to"><a href="#Don’t-balance-loss-via-statistics-unless-you-have-a-good-reason-to" class="headerlink" title="Don’t balance loss via statistics (unless you have a good reason to)"></a>Don’t balance loss via statistics (unless you have a good reason to)</h3><ul>
-<li>Don’t try to find a (number of G / number of D) schedule to uncollapse training</li>
-<li>It’s hard and we’ve all tried it.</li>
-<li>If you do try it, have a principled approach to it, rather than intuition</li>
-</ul>
-<p>For example</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> lossD &gt; <span class="string">A:</span></span><br><span class="line">  train D</span><br><span class="line"><span class="keyword">while</span> lossG &gt; <span class="string">B:</span></span><br><span class="line">  train G</span><br></pre></td></tr></table></figure>
 
-<h3 id="If-you-have-labels-use-them"><a href="#If-you-have-labels-use-them" class="headerlink" title="If you have labels, use them"></a>If you have labels, use them</h3><ul>
-<li>if you have labels available, training the discriminator to also classify the samples: auxiliary GANs</li>
-</ul>
-<h3 id="Add-noise-to-inputs-decay-over-time"><a href="#Add-noise-to-inputs-decay-over-time" class="headerlink" title="Add noise to inputs, decay over time"></a>Add noise to inputs, decay over time</h3><ul>
-<li>Add some artificial noise to inputs to D (Arjovsky et. al., Huszar, 2016)<ul>
-<li><a href="http://www.inference.vc/instance-noise-a-trick-for-stabilising-gan-training/" target="_blank" rel="noopener">http://www.inference.vc/instance-noise-a-trick-for-stabilising-gan-training/</a></li>
-<li><a href="https://openreview.net/forum?id=Hk4_qw5xe" target="_blank" rel="noopener">https://openreview.net/forum?id=Hk4_qw5xe</a></li>
-</ul>
-</li>
-<li>adding gaussian noise to every layer of generator (Zhao et. al. EBGAN)<ul>
-<li>Improved GANs: OpenAI code also has it (commented out)</li>
-</ul>
-</li>
-</ul>
-<h3 id="not-sure-Train-discriminator-more-sometimes"><a href="#not-sure-Train-discriminator-more-sometimes" class="headerlink" title="[not-sure] Train discriminator more (sometimes)"></a>[not-sure] Train discriminator more (sometimes)</h3><ul>
-<li>especially when you have noise</li>
-<li>hard to find a schedule of number of D iterations vs G iterations</li>
-</ul>
-<h3 id="not-sure-Batch-Discrimination"><a href="#not-sure-Batch-Discrimination" class="headerlink" title="[not-sure] Batch Discrimination"></a>[not-sure] Batch Discrimination</h3><ul>
-<li>Mixed results</li>
-</ul>
-<h3 id="Discrete-variables-in-Conditional-GANs"><a href="#Discrete-variables-in-Conditional-GANs" class="headerlink" title="Discrete variables in Conditional GANs"></a>Discrete variables in Conditional GANs</h3><ul>
-<li>Use an Embedding layer</li>
-<li>Add as additional channels to images</li>
-<li>Keep embedding dimensionality low and upsample to match image channel size</li>
-</ul>
-<h3 id="Use-Dropouts-in-G-in-both-train-and-test-phase"><a href="#Use-Dropouts-in-G-in-both-train-and-test-phase" class="headerlink" title="Use Dropouts in G in both train and test phase"></a>Use Dropouts in G in both train and test phase</h3><ul>
-<li>Provide noise in the form of dropout (50%).</li>
-<li>Apply on several layers of our generator at both training and test time</li>
-<li><a href="https://arxiv.org/pdf/1611.07004v1.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1611.07004v1.pdf</a></li>
-</ul>
-<h3 id="not-sure-Batch-Discrimination-1"><a href="#not-sure-Batch-Discrimination-1" class="headerlink" title="[not-sure] Batch Discrimination"></a>[not-sure] Batch Discrimination</h3><ul>
-<li>Train D and G standalone without updating weights of the other and make sure the losses go down.</li>
-</ul>
-<h3 id="Authors"><a href="#Authors" class="headerlink" title="Authors"></a>Authors</h3><ul>
-<li>Soumith Chintala</li>
-<li>Emily Denton</li>
-<li>Martin Arjovsky</li>
-<li>Michael Mathieu</li>
-</ul>
+
+
+<table>
+<thead>
+<tr>
+<th align="center">layer</th>
+<th align="center">Stride</th>
+<th align="center">Kernel size</th>
+<th align="center">feature map</th>
+<th align="center">PADDING</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Conv1</td>
+<td align="center">4</td>
+<td align="center">$11<em>11</em>96$</td>
+<td align="center">$55<em>55</em>96$</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">Pooling1</td>
+<td align="center">2</td>
+<td align="center">$3*3$</td>
+<td align="center">$27<em>27</em>96$</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">Conv2</td>
+<td align="center">1</td>
+<td align="center">$5<em>5</em>256$</td>
+<td align="center">$27<em>27</em>256$</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">Pooling2</td>
+<td align="center">2</td>
+<td align="center">$3*3$</td>
+<td align="center">$13<em>13</em>256$</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">Conv3</td>
+<td align="center">1</td>
+<td align="center">$3<em>3</em>384$</td>
+<td align="center">$13<em>13</em>384$</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">Conv4</td>
+<td align="center">1</td>
+<td align="center">$3<em>3</em>384$</td>
+<td align="center">$13<em>13</em>384$</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">Conv5</td>
+<td align="center">1</td>
+<td align="center">$3<em>3</em>256$</td>
+<td align="center">$13<em>13</em>256$</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">Pooling5</td>
+<td align="center">2</td>
+<td align="center">$3*3$</td>
+<td align="center">$6<em>6</em>256$</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">FC6</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">4096</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">FC7</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">4096</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">FC8</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">1000</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="网络特点"><a href="#网络特点" class="headerlink" title="网络特点"></a>网络特点</h2><p>1.Training on Multiple GPUs</p>
+<p>2.ReLU Nonlinearity</p>
+<p>传统神经网络激活函数通常为反正切或是sigmoid，AlexNet使用RELU作为激活函数，相比于反正切，该方法训练速度大约有6倍提升。</p>
+<p>3.Local Response Normalization</p>
+<p><img src="/2019/12/14/AlexNet/image-20191214160951499.png" alt="LRN"></p>
+<p>LRN加在RELU的激活后面，能够增加网络的泛化能力，并在ILSVRC-2012上降低1%的错误率。不过后来的网络证明了LRN并非CNN中必须包含的层，甚至有些网络加入LRN后模型表现反而降低了。</p>
+<p>4.Overlapping Pooling</p>
+<p>重叠池化是指池化步伐小于kernel size，池化后的feature map的感受野其实是有部分重叠的,文章指出这样做可以防止过拟合。但是，后面的网络鲜有继续使用的，因为有更好的防止过拟合的技术出现，比如BN已经可以解决过拟合的问题。</p>
+<p>5.Data Augmentation</p>
+<p>使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256<em>256$，然后从中随机crop出$224</em>224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。</p>
+<p>6.Dropout</p>
+<p>Dropout通过训练时随机丢弃部分神经元从而减少过拟合的风险。这么做也可以迫使这些神经元去学习互补的一些特征。</p>
 
     </div>
 
@@ -427,6 +411,7 @@
           <div class="post-tags">
               <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 学习笔记</a>
               <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+              <a href="/tags/CV/" rel="tag"><i class="fa fa-tag"></i> CV</a>
           </div>
 
         
@@ -435,13 +420,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/11/Study-Notes-of-Machine-Learning-V1/" rel="prev" title="Study Notes of Machine Learning V1">
-      <i class="fa fa-chevron-left"></i> Study Notes of Machine Learning V1
+    <a href="/2019/12/14/Tips-to-make-GANs-work/" rel="prev" title="Tips to make GANs work">
+      <i class="fa fa-chevron-left"></i> Tips to make GANs work
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/12/14/AlexNet/" rel="next" title="AlexNet">
-      AlexNet <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -486,7 +468,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalize-the-inputs"><span class="nav-number">1.</span> <span class="nav-text">Normalize the inputs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-modified-loss-function"><span class="nav-number">2.</span> <span class="nav-text">A modified loss function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BatchNorm"><span class="nav-number">3.</span> <span class="nav-text">BatchNorm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Avoid-Sparse-Gradients-ReLU-MaxPool"><span class="nav-number">4.</span> <span class="nav-text">Avoid Sparse Gradients: ReLU, MaxPool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Soft-and-Noisy-Labels"><span class="nav-number">5.</span> <span class="nav-text">Use Soft and Noisy Labels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCGAN-Hybrid-Models"><span class="nav-number">6.</span> <span class="nav-text">DCGAN / Hybrid Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-stability-tricks-from-RL"><span class="nav-number">7.</span> <span class="nav-text">Use stability tricks from RL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-the-ADAM-Optimizer"><span class="nav-number">8.</span> <span class="nav-text">Use the ADAM Optimizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Track-failures-early"><span class="nav-number">9.</span> <span class="nav-text">Track failures early</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Don’t-balance-loss-via-statistics-unless-you-have-a-good-reason-to"><span class="nav-number">10.</span> <span class="nav-text">Don’t balance loss via statistics (unless you have a good reason to)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#If-you-have-labels-use-them"><span class="nav-number">11.</span> <span class="nav-text">If you have labels, use them</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-noise-to-inputs-decay-over-time"><span class="nav-number">12.</span> <span class="nav-text">Add noise to inputs, decay over time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-sure-Train-discriminator-more-sometimes"><span class="nav-number">13.</span> <span class="nav-text">[not-sure] Train discriminator more (sometimes)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-sure-Batch-Discrimination"><span class="nav-number">14.</span> <span class="nav-text">[not-sure] Batch Discrimination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Discrete-variables-in-Conditional-GANs"><span class="nav-number">15.</span> <span class="nav-text">Discrete variables in Conditional GANs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Dropouts-in-G-in-both-train-and-test-phase"><span class="nav-number">16.</span> <span class="nav-text">Use Dropouts in G in both train and test phase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#not-sure-Batch-Discrimination-1"><span class="nav-number">17.</span> <span class="nav-text">[not-sure] Batch Discrimination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authors"><span class="nav-number">18.</span> <span class="nav-text">Authors</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构"><span class="nav-number">1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络特点"><span class="nav-number">2.</span> <span class="nav-text">网络特点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -748,9 +730,9 @@ window.addEventListener('pjax:success', () => {
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "https://quan-sun.github.io/2019/12/14/Tips-to-make-GANs-work/",
-            identifier: "2019/12/14/Tips-to-make-GANs-work/",
-            title: "Tips to make GANs work"
+            url: "https://quan-sun.github.io/2019/12/14/AlexNet/",
+            identifier: "2019/12/14/AlexNet/",
+            title: "AlexNet"
           }
         }
       });
