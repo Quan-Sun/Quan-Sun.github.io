@@ -23,19 +23,19 @@ AlexNet总共有8哥权重层，其中包括5个卷积层和3个全连接层。
 
 第1、2卷积层后连有LRN(Local Response Normalization)层，每个LRN及最后层卷积层后跟有最大池化层，并且每个权重层均有RELU激活函数。全连接后使用dropout解决过拟合。
 
-|  layer   | Stride | Kernel size | feature map | PADDING |
-| :------: | :----: | :---------: | :---------: | :-----: |
-|  Conv1   |   4    | $11*11*96$  | $55*55*96$  |    0    |
-| Pooling1 |   2    |    $3*3$    | $27*27*96$  |    0    |
-|  Conv2   |   1    |  $5*5*256$  | $27*27*256$ |    2    |
-| Pooling2 |   2    |    $3*3$    | $13*13*256$ |    0    |
-|  Conv3   |   1    |  $3*3*384$  | $13*13*384$ |    1    |
-|  Conv4   |   1    |  $3*3*384$  | $13*13*384$ |    1    |
-|  Conv5   |   1    |  $3*3*256$  | $13*13*256$ |    1    |
-| Pooling5 |   2    |    $3*3$    |  $6*6*256$  |    0    |
-|   FC6    |        |             |    4096     |         |
-|   FC7    |        |             |    4096     |         |
-|   FC8    |        |             |    1000     |         |
+|  layer   | Stride |     Kernel size      |      feature map      | PADDING |
+| :------: | :----: | :------------------: | :-------------------: | :-----: |
+|  Conv1   |   4    | $11\times11\times96$ | $55\times55\times96$  |    0    |
+| Pooling1 |   2    |      $3\times3$      | $27\times27\times96$  |    0    |
+|  Conv2   |   1    | $5\times5\times256$  | $27\times27\times256$ |    2    |
+| Pooling2 |   2    |      $3\times3$      | $13\times13\times256$ |    0    |
+|  Conv3   |   1    | $3\times3\times384$  | $13\times13\times384$ |    1    |
+|  Conv4   |   1    | $3\times3\times384$  | $13\times13\times384$ |    1    |
+|  Conv5   |   1    | $3\times3\times256$  | $13\times13\times256$ |    1    |
+| Pooling5 |   2    |      $3\times3$      |  $6\times6\times256$  |    0    |
+|   FC6    |        |                      |         4096          |         |
+|   FC7    |        |                      |         4096          |         |
+|   FC8    |        |                      |         1000          |         |
 
 ## 网络特点
 
@@ -57,7 +57,7 @@ LRN加在RELU的激活后面，能够增加网络的泛化能力，并在ILSVRC-
 
 5.Data Augmentation
 
-使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256*256$，然后从中随机crop出$224*224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。
+使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256\times256$，然后从中随机crop出$224\times224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。
 
 6.Dropout
 
