@@ -22,57 +22,57 @@
 <tbody><tr>
 <td align="center">Conv1</td>
 <td align="center">4</td>
-<td align="center">$11<em>11</em>96$</td>
-<td align="center">$55<em>55</em>96$</td>
+<td align="center">$11\times11\times96$</td>
+<td align="center">$55\times55\times96$</td>
 <td align="center">0</td>
 </tr>
 <tr>
 <td align="center">Pooling1</td>
 <td align="center">2</td>
-<td align="center">$3*3$</td>
-<td align="center">$27<em>27</em>96$</td>
+<td align="center">$3\times3$</td>
+<td align="center">$27\times27\times96$</td>
 <td align="center">0</td>
 </tr>
 <tr>
 <td align="center">Conv2</td>
 <td align="center">1</td>
-<td align="center">$5<em>5</em>256$</td>
-<td align="center">$27<em>27</em>256$</td>
+<td align="center">$5\times5\times256$</td>
+<td align="center">$27\times27\times256$</td>
 <td align="center">2</td>
 </tr>
 <tr>
 <td align="center">Pooling2</td>
 <td align="center">2</td>
-<td align="center">$3*3$</td>
-<td align="center">$13<em>13</em>256$</td>
+<td align="center">$3\times3$</td>
+<td align="center">$13\times13\times256$</td>
 <td align="center">0</td>
 </tr>
 <tr>
 <td align="center">Conv3</td>
 <td align="center">1</td>
-<td align="center">$3<em>3</em>384$</td>
-<td align="center">$13<em>13</em>384$</td>
+<td align="center">$3\times3\times384$</td>
+<td align="center">$13\times13\times384$</td>
 <td align="center">1</td>
 </tr>
 <tr>
 <td align="center">Conv4</td>
 <td align="center">1</td>
-<td align="center">$3<em>3</em>384$</td>
-<td align="center">$13<em>13</em>384$</td>
+<td align="center">$3\times3\times384$</td>
+<td align="center">$13\times13\times384$</td>
 <td align="center">1</td>
 </tr>
 <tr>
 <td align="center">Conv5</td>
 <td align="center">1</td>
-<td align="center">$3<em>3</em>256$</td>
-<td align="center">$13<em>13</em>256$</td>
+<td align="center">$3\times3\times256$</td>
+<td align="center">$13\times13\times256$</td>
 <td align="center">1</td>
 </tr>
 <tr>
 <td align="center">Pooling5</td>
 <td align="center">2</td>
-<td align="center">$3*3$</td>
-<td align="center">$6<em>6</em>256$</td>
+<td align="center">$3\times3$</td>
+<td align="center">$6\times6\times256$</td>
 <td align="center">0</td>
 </tr>
 <tr>
@@ -106,7 +106,7 @@
 <p>4.Overlapping Pooling</p>
 <p>重叠池化是指池化步伐小于kernel size，池化后的feature map的感受野其实是有部分重叠的,文章指出这样做可以防止过拟合。但是，后面的网络鲜有继续使用的，因为有更好的防止过拟合的技术出现，比如BN已经可以解决过拟合的问题。</p>
 <p>5.Data Augmentation</p>
-<p>使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256<em>256$，然后从中随机crop出$224</em>224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。</p>
+<p>使用Random Crop和flip进行数据增强，从而扩充训练样本的数量。具体做法就是将图片resize到$256\times256$，然后从中随机crop出$224\times224$大小的patch训练；测试时从四个角和中心分别crop，然后水平翻转图像，这就得到了10张测试图片，然后对于这10张测试图片得到的结果取平均值。另一种数据增强方法是转换RGB通道的强度，大约降低了1% error rate，但是这个方法之后的模型很少使用了。</p>
 <p>6.Dropout</p>
 <p>Dropout通过训练时随机丢弃部分神经元从而减少过拟合的风险。这么做也可以迫使这些神经元去学习互补的一些特征。</p>
 ]]></content>
