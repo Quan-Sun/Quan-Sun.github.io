@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quan-sun.github.io/"/>
-  <updated>2019-12-14T21:43:33.748Z</updated>
+  <updated>2019-12-15T01:41:23.258Z</updated>
   <id>https://quan-sun.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VGG</title>
+    <link href="https://quan-sun.github.io/2019/12/14/VGG/"/>
+    <id>https://quan-sun.github.io/2019/12/14/VGG/</id>
+    <published>2019-12-15T01:39:08.000Z</published>
+    <updated>2019-12-15T01:41:23.258Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://arxiv.org/pdf/1409.1556.pdf" target="_blank" rel="noopener">Very Deep Convolutional Networks for Large-Scale Image Recognition</a></p><p>VGG由牛津大学的Karen Simonyan和Andrew Zisserman提出，在2014年的ILSVRC中top-5 error rate达到了7.3%。VGG可以说是CNN中最重要的模型之一，它强调了深度在CNN模型中的重要作用(我之前的一篇[博客][<a href="https://quan-sun.github.io/2019/11/24/为什么神经网络越深越好/#more]介绍了深度对于神经网络的影响)。">https://quan-sun.github.io/2019/11/24/为什么神经网络越深越好/#more]介绍了深度对于神经网络的影响)。</a></p><p>VGG研究卷积网络深度的初衷是想搞清楚卷积网络深度是如何影响大规模图像分类与识别的精度和准确率的。VGG在加深网络层数同时为了避免参数过多，所有层都采用$3\times3$的小卷积核，stride设置为1。VGG的输入图像大小为$224 \times 244$，在训练集上对所有图像计算RGB均值，然后将处理后的图像作为传入VGG卷积网络，使用$3\times3$或者$1\times1$的filter，stride设置为1。</p><a id="more"></a><h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="https://www.cs.toronto.edu/~frossard/post/vgg16/vgg16.png" alt="VGG19 architecture"></p><p><img src="/2019/12/14/VGG/image-20191214170328471.png" alt="ConvNet configurations"></p><p>VGG根据权重层的数量的不同分为VGG11/VGG13/VGG16/VGG19。可以看到VGG由不同数量的卷积层和3层全连接层组成，并且不是每个卷积层后面都接有pooling层。</p><p>参数的数量如下：</p><p><img src="/2019/12/14/VGG/image-20191214171403932.png" alt="number of parameters"></p><h2 id="网络特点"><a href="#网络特点" class="headerlink" title="网络特点"></a>网络特点</h2><h4 id="使用-3-times3-的kernel代替较大的kernel"><a href="#使用-3-times3-的kernel代替较大的kernel" class="headerlink" title="使用$3\times3$的kernel代替较大的kernel"></a>使用$3\times3$的kernel代替较大的kernel</h4><p>对于给定的感受野，采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且参数更少。具体来说，使用两个$3\times3$的kernel代替$5\times5$的kernel，三个$3\times3$的kernel代替$7\times7$的kernel。这么做可以在保证具有相同感受野的条件下，提升网络的深度，在一定程度上提升神经网络的效果。</p><p>3个stride为1的$3\times3$卷积核的叠加作用可看成一个大小为7的感受野（即3个$3\times3$连续卷积相当于1个$7\times7$卷积），其参数总量为 $3\times(9\times C^2)$ ，但是，直接使用7x7卷积核，其参数总量为 $49 \times C^2$ ，这里 C 是指输入和输出的通道数。$3\times(9\times C^2)$小于$49 \times C^2$，所以3个stride为1的$3\times3$卷积核减少了参数，同时$3\times3$卷积核有利于更好地保持图像性质。</p><p><img src="https://miro.medium.com/max/689/1*NMC4KrYIciGdE_FaazxF7w.png" alt="2 layers of 3×3 filters already covered the 5×5 area"></p><p>source: <a href="https://medium.com/coinmonks/paper-review-of-vggnet-1st-runner-up-of-ilsvlc-2014-image-classification-d02355543a11" target="_blank" rel="noopener">https://medium.com/coinmonks/paper-review-of-vggnet-1st-runner-up-of-ilsvlc-2014-image-classification-d02355543a11</a></p><h4 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h4><ul><li>VGG会耗费更多计算资源，并且使用了更多的参数，导致更多的内存占用。其中绝大多数的参数都是来自于第一个全连接层，而且VGG有3个全连接层。</li><li>在此之前，CNN很少有突破10层的，而VGG在加深CNN的深度方面做出了重要的贡献。但是VGG不能无限制的加深网络，当网络加深到一定层数之后就会出现训练效果褪化、梯度消失等问题。这些问题正是为什么很长一段时间神经网络没办法做到很深的原因。之后会说到BN和ResNet会分别解决这两种问题。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; class=&quot;aplayer-secondary-script-marker&quot;&gt;&lt;/script&gt;&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1409.1556.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Very Deep Convolutional Networks for Large-Scale Image Recognition&lt;/a&gt;&lt;/p&gt;&lt;p&gt;VGG由牛津大学的Karen Simonyan和Andrew Zisserman提出，在2014年的ILSVRC中top-5 error rate达到了7.3%。VGG可以说是CNN中最重要的模型之一，它强调了深度在CNN模型中的重要作用(我之前的一篇[博客][&lt;a href=&quot;https://quan-sun.github.io/2019/11/24/为什么神经网络越深越好/#more]介绍了深度对于神经网络的影响)。&quot;&gt;https://quan-sun.github.io/2019/11/24/为什么神经网络越深越好/#more]介绍了深度对于神经网络的影响)。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;VGG研究卷积网络深度的初衷是想搞清楚卷积网络深度是如何影响大规模图像分类与识别的精度和准确率的。VGG在加深网络层数同时为了避免参数过多，所有层都采用$3\times3$的小卷积核，stride设置为1。VGG的输入图像大小为$224 \times 244$，在训练集上对所有图像计算RGB均值，然后将处理后的图像作为传入VGG卷积网络，使用$3\times3$或者$1\times1$的filter，stride设置为1。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="深度学习" scheme="https://quan-sun.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="学习笔记" scheme="https://quan-sun.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="深度学习" scheme="https://quan-sun.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="CV" scheme="https://quan-sun.github.io/tags/CV/"/>
+    
+  </entry>
   
   <entry>
     <title>AlexNet</title>
