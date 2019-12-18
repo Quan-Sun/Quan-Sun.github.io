@@ -15,20 +15,7 @@ paper地址: [Deep Residual Learning for Image Recognition](https://arxiv.org/pd
 
 ResNet到底解决的是什么问题？之前看到有些文章说它解决了梯度消失的问题，但是，这很明显是错误的。ResNet的paper中，作者直接指出了梯度消失的问题在BN提出之后基本上已经得到了解决，而ResNet解决的是degradation的问题。所谓degradation就是，随着网络层数的增加，网络的正确率会饱和，然后迅速退化。
 
-> Driven by the significance of depth, a question arises: Is
-> learning better networks as easy as stacking more layers?
-> **An obstacle to answering this question was the notorious
-> problem of vanishing/exploding gradients, which
-> hamper convergence from the beginning. This problem,
-> however, has been largely addressed by normalized initialization and intermediate normalization layers**, which enable networks with tens of layers to start converging for stochastic gradient descent (SGD) with backpropagation.
-> **When deeper networks are able to start converging, a
-> degradation problem has been exposed: with the network
-> depth increasing, accuracy gets saturated (which might be
-> unsurprising) and then degrades rapidly**. Unexpectedly,
-> such degradation is not caused by overfitting, and adding
-> more layers to a suitably deep model leads to higher training
-> error, as reported in and thoroughly verified by
-> our experiments.
+> Driven by the significance of depth, a question arises: Is learning better networks as easy as stacking more layers? **An obstacle to answering this question was the notorious problem of vanishing/exploding gradients, which hamper convergence from the beginning. This problem, however, has been largely addressed by normalized initialization and intermediate normalization layers**, which enable networks with tens of layers to start converging for stochastic gradient descent (SGD) with backpropagation. **When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly**. Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error, as reported in and thoroughly verified by our experiments.
 
 所以，网络变深之后会出现两个问题。第一个问题就是梯度消失、爆炸，这个问题在BN出现后被顺利解决。BN层能对各层的输出做归一化，这样梯度在反向层层传递后仍能保持大小稳定，不会出现过小或过大的情况。加入BN后再加大深度是不是就很容易收敛了呢？答案仍是否定的。因为第二个问题，degradation problem，的存在。层数到达一定程度时准确率就会饱和，然后迅速下降，而且这种下降既不是梯度消失引起的，也不是过拟合造成的，而是由于网络过于复杂，以至于光靠不加约束的训练很难达到理想的错误率。degradation problem不是网络结构本身的问题，而是现有的训练方式不够理想造成的。当前广泛使用的训练方法，无论是SGD，还是AdaGrad，还是RMSProp，都无法在网络深度变大后达到理论上最优的收敛结果。
 
