@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>3次握手，4次挥手</title>
+    <url>/2020/01/01/3%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C4%E6%AC%A1%E6%8C%A5%E6%89%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>之前面试遇到过好几次面试官问“3次握手，4次挥手”的问题（之前没有学过计算机网络的内容，第一次听到的时候内心一阵WTF——！，握手、挥手什么鬼！）。这篇文章记录一下我前段时间学的关于“3次握手，4次挥手”的部分内容。</p><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><h4 id="什么是TCP"><a href="#什么是TCP" class="headerlink" title="什么是TCP"></a>什么是TCP</h4><ul>
+<li>TCP 提供一种<strong>面向连接的、可靠的</strong>字节流服务。</li>
+<li>在一个 TCP 连接中，仅有两方进行彼此通信。广播和多播不能用于 TCP。</li>
+<li>TCP 使用校验，确认和重传机制来保证可靠传输。</li>
+<li>TCP 给数据分节进行排序，并使用累积确认保证数据的顺序不变和非重复</li>
+<li>TCP 使用滑动窗口机制来实现流量控制，通过动态改变窗口的大小进行拥塞控制。</li>
+</ul><p>TCP是一种面向连接的单播协议，在发送数据前，通信双方必须在彼此间建立一条连接。所谓的“连接”，其实是客户端和服务器的内存里保存的一份关于对方的信息，如ip地址、端口号等。</p><a id="more"></a>
+
+
+<p>TCP可以看成是一种字节流，它会处理IP层或以下的层的丢包、重复以及错误问题。在连接的建立过程中，双方需要交换一些连接的参数。这些参数可以放在TCP头部。</p>
+<p>TCP提供了一种可靠、面向连接、字节流、传输层的服务，采用三次握手建立一个连接。采用4次挥手来关闭一个连接。</p>
+<p>但是，TCP 并不能保证数据一定会被对方接收到。TCP 能够做到的是，如果有可能，就把数据递送到接收方，否则就通过放弃重传并且中断连接来通知用户。因此TCP 并不是 100% 可靠的协议，它所能提供的是数据的可靠递送或故障的可靠通知。</p>
+<h4 id="TCP服务模型"><a href="#TCP服务模型" class="headerlink" title="TCP服务模型"></a>TCP服务模型</h4><p>一个TCP连接由一个4元组构成，分别是两个IP地址和两个端口号。一个TCP连接通常分为三个阶段：启动、数据传输、退出（关闭）。</p>
+<p>当TCP接收到另一端的数据时，它会发送一个确认ACK，但这个确认不会立即发送，一般会延迟一会儿。ACK是累积的，一个确认字节号N的ACK表示所有N之前的字节已经成功被接收了。这样的好处是如果一个ACK丢失，很可能后续的ACK就足以确认前面的报文段了。</p>
+<p>一个完整的TCP连接是双向和对称的，数据可以在两个方向上平等地流动。给上层应用程序提供一种双工服务。一旦建立了一个连接，这个连接的一个方向上的每个TCP报文段都包含了相反方向上的报文段的一个ACK。</p>
+<blockquote>
+<p>ACK 表示确认，使得确认号有效。 RST 表示重置连接（reset by peer）。 SYN表示用于初始化一个连接的序列号。 FIN表示该报文段的发送方已经结束向对方发送数据。</p>
+</blockquote>
+<p>序列号的作用是使得一个TCP接收端可丢弃重复的报文段，记录以杂乱次序到达的报文段。因为TCP使用IP来传输报文段，而IP不提供重复消除或者保证次序正确的功能。另一方面，TCP是一个字节流协议，绝不会以杂乱的次序给上层程序发送数据。因此TCP接收端会被迫先保持大序列号的数据不交给应用程序，直到缺失的小序列号的报文段被填满。</p>
+<p>源端口和目的端口在TCP层确定双方进程，序列号表示的是报文段数据中的第一个字节号，ACK表示确认号，该确认号的发送方期待接收的下一个序列号，即最后被成功接收的数据字节序列号加1，这个字段只有在ACK位被启用的时候才有效。</p>
+<p>当新建一个连接时，从客户端发送到服务端的第一个报文段的SYN位被启用，这称为SYN报文段，这时序列号字段包含了在本次连接的这个方向上要使用的第一个序列号，即初始序列号<code>ISN</code>，之后发送的数据是ISN加1，因此SYN位字段会消耗一个序列号，这意味着使用重传进行可靠传输。而不消耗序列号的ACK则不是。</p>
+<p>头部长度以32bits（4bytes）为单位，它只有4位，最大为15，因此头部最大长度为60字节，而其最小为5，也就是头部最小为20字节（可变选项为空）。</p>
+<p>当一个连接被建立或被终止时，交换的报文段只包含TCP头部，而没有数据。</p>
+<h3 id="3次握手"><a href="#3次握手" class="headerlink" title="3次握手"></a>3次握手</h3><p>所谓三次握手(Three-way Handshake)，是指建立一个 TCP 连接时，需要客户端和服务器总共发送3个包。</p>
+<p>三次握手的目的是连接服务器指定端口，建立 TCP 连接，并同步连接双方的序列号和确认号，交换 TCP 窗口大小信息。这样双方都能明确自己和对方的收发能力是正常的。在 socket 编程中，客户端执行 <code>connect()</code> 时将触发三次握手。</p>
+<p>第一次握手(SYN=1, seq=x)：客户端发送网络包，服务端收到了。这样服务端就能得出结论，客户端的发送能力、服务端的接收能力是正常的。</p>
+<ul>
+<li>客户端发送一个 TCP 的 SYN 标志位置1的包，指明客户端打算连接的服务器的端口，以及初始序号 X,保存在包头的序列号(Sequence Number)字段里。发送完毕后，客户端进入 <code>SYN_SEND</code> 状态。</li>
+</ul>
+<p>第二次握手(SYN=1, ACK=1, seq=y, ACKnum=x+1)：服务端发包，客户端收到了。这样客户端就能得出结论，服务端的接收、发送能力，客户端的接收、发送能力是正常的。 从客户端的视角来看，我接到了服务端发送过来的响应数据包，说明服务端接收到了我在第一次握手时发送的网络包，并且成功发送了响应数据包，这就说明，服务端的接收、发送能力正常。而另一方面，我收到了服务端的响应数据包，说明我第一次发送的网络包成功到达服务端，这样，我自己的发送和接收能力也是正常的。</p>
+<ul>
+<li>服务器发回确认包(ACK)应答。即 SYN 标志位和 ACK 标志位均为1。服务器端选择自己 ISN 序列号，放到 Seq 域里，同时将确认序号(Acknowledgement Number)设置为客户的 ISN 加1，即X+1。 发送完毕后，服务器端进入 <code>SYN_RCVD</code> 状态。</li>
+</ul>
+<p>第三次握手(ACK=1，ACKnum=y+1)：客户端发包，服务端收到了。这样服务端就能得出结论，客户端的接收、发送能力，服务端的发送、接收能力是正常的。 第一、二次握手后，服务端并不知道客户端的接收能力以及自己的发送能力是否正常。而在第三次握手时，服务端收到了客户端对第二次握手作的回应。从服务端的角度，我在第二次握手时的响应数据发送出去了，客户端接收到了。所以，我的发送能力是正常的。而客户端的接收能力也是正常的。</p>
+<ul>
+<li>客户端再次发送确认包(ACK)，SYN 标志位为0，ACK 标志位为1，并且把服务器发来 ACK 的序号字段+1，放在确定字段中发送给对方，并且在数据段放写ISN的+1。发送完毕后，客户端进入 <code>ESTABLISHED</code> 状态，当服务器端接收到这个包时，也进入 <code>ESTABLISHED</code> 状态，TCP 握手结束。</li>
+</ul>
+<p>经历了上面的三次握手过程，客户端和服务端都确认了自己的接收、发送能力是正常的，之后就可以正常通信了。</p>
+<p>每次都是接收到数据包的一方可以得到一些结论，发送的一方其实没有任何头绪。我虽然有发包的动作，但是我怎么知道我有没有发出去，而对方有没有接收到呢？</p>
+<p>而从上面的过程可以看到，最少是需要三次握手过程的。两次达不到让双方都得出自己、对方的接收、发送能力都正常的结论。其实每次收到网络包的一方至少是可以得出结论，对方的发送、我方的接收是正常的。而每一步都是有关联的，下一次的<strong>响应</strong>是由于上一次的<strong>请求</strong>触发，因此每次握手其实可以得到额外的结论。比如第三次握手时，服务端收到数据包，表面看服务端只能得到客户端的发送能力、服务端的接收能力是正常的，但是结合第二次，说明服务端在第二次发送的响应包，客户端接收到了，并且作出了响应，从而得到额外的结论，客户端的接收、服务端的发送是正常的。</p>
+<p>3次握手的示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-made-three-way-handshake.png" alt="3次握手"></p>
+<h3 id="4次挥手"><a href="#4次挥手" class="headerlink" title="4次挥手"></a>4次挥手</h3><p>TCP连接是双向传输的对等的模式，就是说双方都可以同时向对方发送或接收数据。当有一方要关闭连接时，会发送指令告知对方，我要关闭连接了。这时对方会回一个ACK，此时一个方向的连接关闭。但是另一个方向仍然可以继续传输数据，等到发送完了所有的数据后，会发送一个FIN段来关闭此方向上的连接。接收方发送ACK确认关闭连接。注意，接收到FIN报文的一方只能回复一个ACK, 它是无法马上返回对方一个FIN报文段的，因为结束数据传输的“指令”是上层应用层给出的。</p>
+<p>TCP 连接的拆除需要发送四个包，因此称为四次挥手(Four-way handshake)，也叫做改进的三次握手。客户端或服务器均可主动发起挥手动作，在 socket 编程中，任何一方执行 close() 操作即可产生挥手操作。</p>
+<p>第一次挥手(FIN=1，seq=x)：</p>
+<ul>
+<li>假设客户端想要关闭连接，客户端发送一个 FIN 标志位置为1的包，表示自己已经没有数据可以发送了，但是仍然可以接受数据。发送完毕后，客户端进入 <code>FIN_WAIT_1</code> 状态。</li>
+</ul>
+<p>第二次挥手(ACK=1，ACKnum=x+1)：</p>
+<ul>
+<li>服务器端确认客户端的 FIN 包，发送一个确认包，表明自己接受到了客户端关闭连接的请求，但还没有准备好关闭连接。发送完毕后，服务器端进入 <code>CLOSE_WAIT</code> 状态，客户端接收到这个确认包之后，进入 <code>FIN_WAIT_2</code> 状态，等待服务器端关闭连接。</li>
+</ul>
+<p>第三次挥手(FIN=1，seq=y)：</p>
+<ul>
+<li>服务器端准备好关闭连接时，向客户端发送结束连接请求，FIN 置为1。发送完毕后，服务器端进入 <code>LAST_ACK</code> 状态，等待来自客户端的最后一个ACK。</li>
+</ul>
+<p>第四次挥手(ACK=1，ACKnum=y+1)：</p>
+<ul>
+<li>客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 <code>TIME_WAIT</code>状态，等待可能出现的要求重传的 ACK 包。服务器端接收到这个确认包之后，关闭连接，进入 <code>CLOSED</code> 状态。客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 <code>CLOSED</code> 状态。</li>
+</ul>
+<p>4次挥手示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-closed-four-way-handshake.png" alt="4次挥手"></p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>UDP经常会和TCP放在一起比较，所以简单介绍一下。</p>
+<p>UDP 是一个简单的传输层协议。和 TCP 相比，UDP 有下面几个显著特性：</p>
+<ul>
+<li>UDP 缺乏可靠性。UDP 本身不提供确认，序列号，超时重传等机制。UDP 数据报可能在网络中被复制，被重新排序。即 UDP 不保证数据报会到达其最终目的地，也不保证各个数据报的先后顺序，也不保证每个数据报只到达一次</li>
+<li>UDP 数据报是有长度的。每个 UDP 数据报都有长度，如果一个数据报正确地到达目的地，那么该数据报的长度将随数据一起传递给接收方。而 TCP 是一个字节流协议，没有任何（协议上的）记录边界。</li>
+<li>UDP 是无连接的。UDP 客户和服务器之前不必存在长期的关系。UDP 发送数据报之前也不需要经过握手创建连接的过程。</li>
+<li>UDP 支持多播和广播。</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://zhuanlan.zhihu.com/p/53374516" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/53374516</a></p>
+<p><a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html" target="_blank" rel="noopener">https://hit-alibaba.github.io/interview/basic/network/TCP.html</a></p>
+]]></content>
+      <categories>
+        <category>计算机基础</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>7 problems of backtracking algorithm</title>
     <url>/2019/12/22/7-problems-of-backtracking-algorithm/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> A summary for 7 “backtracking” problems in Leetcode.  This kind of problems can be solved in a template. It’s easy to find the pattern as following.</p><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// nums: a vector of numbers that you have to traverse</span></span><br><span class="line"><span class="comment">// ans: a vector to record final answer</span></span><br><span class="line"><span class="comment">// path: a vector to record traversing numbers</span></span><br><span class="line"><span class="comment">// start: a start point taht you do DFS in 'nums'</span></span><br><span class="line"><span class="comment">// target: a target of final answer, i.e.the numbers sums to target</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; ans, <span class="keyword">int</span> start, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target==<span class="number">0</span>) &#123; <span class="comment">// the condition of push path into ans</span></span><br><span class="line">            ans.push_back(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 'backtarcking - kits': push_back; DFS; pop_back.</span></span><br><span class="line">                <span class="comment">// you will find the next 3 lines of code in all 'backtracking' problems</span></span><br><span class="line">                path.push_back(nums[i]);</span><br><span class="line">                dfs(nums, ans, i, target-nums[i], path);</span><br><span class="line">                path.pop_back();                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
