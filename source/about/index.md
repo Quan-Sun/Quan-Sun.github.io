@@ -6,6 +6,8 @@ date: 2019-11-23 21:30:21
 
 > Do not ask whether a statement is true until you know what it means.
 
+This blog is used to organize interesting papers, projects, blogs and my personal reading/study notes.
+
 Education
 
 - 2018/8 - 2019/12    Cornell University | Biomedical Engineering | Master of Engineering
