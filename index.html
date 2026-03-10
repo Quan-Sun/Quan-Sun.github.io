@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan Sun | Researcher & Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --text: #e8e8e8;
+            --text-secondary: #888;
+            --accent: #6c63ff;
+            --accent-glow: rgba(108, 99, 255, 0.15);
+            --border: #222;
+            --tag-bg: #1e1e2e;
+            --tag-text: #a9a1ff;
+            --green: #4ade80;
+            --orange: #fb923c;
+            --blue: #60a5fa;
+            --pink: #f472b6;
+            --max-width: 900px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Header / Hero ===== */
+        .hero {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 36px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent), #4f46e5);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 8px 32px rgba(108, 99, 255, 0.25);
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .hero-text .bio {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .hero-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .hero-links a svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== Section ===== */
+        section {
+            padding: 48px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .section-header .line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ===== News ===== */
+        .news-list {
+            list-style: none;
+        }
+
+        .news-list li {
+            display: flex;
+            gap: 16px;
+            padding: 10px 0;
+            font-size: 0.92rem;
+            align-items: baseline;
+        }
+
+        .news-date {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            flex-shrink: 0;
+            width: 90px;
+        }
+
+        .news-text {
+            color: var(--text);
+        }
+
+        .news-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .news-text a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .badge-oral { background: rgba(251, 146, 60, 0.15); color: var(--orange); }
+        .badge-spotlight { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+        .badge-new { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+
+        /* ===== Publications ===== */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pub-card {
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.25s;
+        }
+
+        .pub-card:hover {
+            background: var(--bg-card-hover);
+            border-color: #333;
+            transform: translateY(-1px);
+        }
+
+        .pub-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .pub-title a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent);
+        }
+
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .pub-authors .me {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .pub-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pub-venue {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text);
+            padding: 2px 10px;
+            background: var(--tag-bg);
+            border-radius: 6px;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .pub-links a {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 2px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .pub-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .pub-stars {
+            font-size: 0.82rem;
+            color: var(--orange);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== Experience ===== */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .exp-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .exp-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            width: 130px;
+            padding-top: 3px;
+        }
+
+        .exp-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .exp-content .role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 48px 0 40px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-links {
+                justify-content: center;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .pub-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pub-links {
+                margin-left: 0;
+            }
+
+            .exp-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .exp-time {
+                width: auto;
+            }
+
+            .news-list li {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .news-date {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="avatar">QS</div>
+            <div class="hero-text">
+                <h1>Quan Sun <span style="font-weight:300; color: var(--text-secondary); font-size: 1.2rem;">孙泉</span></h1>
+                <p class="tagline">Researcher & Engineer at StepFun (阶跃星辰)</p>
+                <p class="bio">
+                    I work on large-scale multimodal models, with a focus on unified multimodal native architectures. 
+                    Previously at BAAI, where I led the development of the EVA and Emu series. 
+                    My research spans visual representation learning, generative multimodal models, and autoregressive image/video generation.
+                </p>
+                <div class="hero-links">
+                    <a href="https://scholar.google.com/citations?user=pVKiHdEAAAAJ&hl=en">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+                        Scholar
+                    </a>
+                    <a href="https://github.com/Quan-Sun">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://twitter.com/QuanSun6">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        Twitter
+                    </a>
+                    <a href="mailto:quansun84@gmail.com">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- News -->
+<section>
+    <div class="container">
+        <div class="section-header">
+            <h2>🔥 News</h2>
+            <div class="line"></div>
+        </div>
+        <ul class="news-list">
+            <li>
+                <span class="news-date">2026.02</span>
+                <span class="news-text"><a href="https://github.com/stepfun-ai/NextStep-1">NextStep-1</a> is selected as <span class="highlight-badge badge-oral">Oral</span> at ICLR 2026!</span>
+            </li>
+            <li>
+                <span class="news-date">2025.12</span>
+                <span class="news-text">Released <a href="https://huggingface.co/stepfun-ai/NextStep-1.1">NextStep-1.1</a> with improved quality via Flow-based RL post-training.</span>
+            </li>
+            <li>
+                <span class="news-date">2025.08</span>
+                <span class="news-text">Released inference code, training code, and model weights of <a href="https://github.com/stepfun-ai/NextStep-1">NextStep-1</a>.</span>
+            </li>
+            <li>
+                <span class="news-date">2025.01</span>
+                <span class="news-text"><a href="https://github.com/baaivision/DIVA">DIVA</a> is accepted by ICLR 2025!</span>
+            </li>
+            <li>
+                <span class="news-date">2024.09</span>
+                <span class="news-text">Released <a href="https://github.com/baaivision/Emu3">Emu3</a> — multimodal models trained solely with next-token prediction.</span>
+            </li>
+            <li>
+                <span class="news-date">2024.02</span>
+                <span class="news-text">Emu1 accepted by ICLR 2024, Emu2 and CapsFusion accepted by CVPR 2024!</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Selected Publications -->
+<section>
+    <div class="container">
+        <div class="section-header">
+            <h2>📄 Selected Publications</h2>
+            <div class="line"></div>
+        </div>
+        <div class="pub-list">
+
+            <!-- NextStep-1 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://arxiv.org/abs/2508.10711">NextStep-1: SOTA Autoregressive Image Generation with Continuous Tokens</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Yuang Peng, Kun Yan, et al.
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">ICLR 2026 <span class="highlight-badge badge-oral">Oral</span></span>
+                    <span class="pub-stars">★ 649</span>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2508.10711">Paper</a>
+                        <a href="https://github.com/stepfun-ai/NextStep-1">Code</a>
+                        <a href="https://huggingface.co/collections/stepfun-ai/nextstep-1-689d80238a01322b93b8a3dc">Models</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAGI -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://magivideogen.github.io/">MAGI: Taming Teacher Forcing for Masked Autoregressive Video Generation</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Yuang Peng, Kun Yan, Runpei Dong, Duomin Wang, Zheng Ge, Nan Duan, Xiangyu Zhang, Lionel M. Ni, Heung-Yeung Shum
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">2025</span>
+                    <div class="pub-links">
+                        <a href="https://magivideogen.github.io/">Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emu3 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/Emu3">Emu3: Next-Token Prediction is All You Need</a>
+                </div>
+                <div class="pub-authors">
+                    Xinlong Wang, <span class="me">Quan Sun</span>, et al.
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">arXiv 2024</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/Emu3">Code</a>
+                        <a href="https://huggingface.co/BAAI/Emu3-Gen">Models</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVA -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/DIVA">DIVA: Diffusion Feedback Helps CLIP See Better</a>
+                </div>
+                <div class="pub-authors">
+                    Wenxuan Wang*, <span class="me">Quan Sun</span>*, Fan Zhang, Yepeng Tang, Jing Liu, Xinlong Wang
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">ICLR 2025</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/DIVA">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CapsFusion -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/CapsFusion">CapsFusion: Rethinking Image-Text Data at Scale</a>
+                </div>
+                <div class="pub-authors">
+                    Qiying Yu*, <span class="me">Quan Sun</span>*, Xiaosong Zhang, Yufeng Cui, Fan Zhang, Yue Cao, Xinlong Wang, Jingjing Liu
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">CVPR 2024</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/CapsFusion">Code</a>
+                        <a href="https://huggingface.co/datasets/BAAI/CapsFusion-120M">Dataset</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emu2 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/Emu">Emu2: Generative Multimodal Models are In-Context Learners</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Yufeng Cui, Xiaosong Zhang, Fan Zhang, Qiying Yu, et al.
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">CVPR 2024</span>
+                    <span class="pub-stars">★ 1.8k</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/Emu">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emu1 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/Emu">Emu: Generative Pretraining in Multimodality</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Qiying Yu, Yufeng Cui, Fan Zhang, Xiaosong Zhang, et al.
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">ICLR 2024</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/Emu">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVA-CLIP-18B -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/EVA/tree/master/EVA-CLIP-18B">EVA-CLIP-18B: Scaling CLIP to 18 Billion Parameters</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Jinsheng Wang, Qiying Yu, Yufeng Cui, Fan Zhang, Xiaosong Zhang, Xinlong Wang
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">arXiv 2024</span>
+                    <span class="pub-stars">★ 2.6k</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/EVA/tree/master/EVA-CLIP-18B">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVA-CLIP -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/EVA/tree/master/EVA-CLIP">EVA-CLIP: Improved Training Techniques for CLIP at Scale</a>
+                </div>
+                <div class="pub-authors">
+                    <span class="me">Quan Sun</span>, Yuxin Fang, Ledell Wu, Xinlong Wang, Yue Cao
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">arXiv 2023</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/EVA/tree/master/EVA-CLIP">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVA-02 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/EVA/tree/master/EVA-02">EVA-02: A Visual Representation for Neon Genesis</a>
+                </div>
+                <div class="pub-authors">
+                    Yuxin Fang, <span class="me">Quan Sun</span>, Xinggang Wang, Tiejun Huang, Xinlong Wang, Yue Cao
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">Image and Vision Computing</span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/EVA/tree/master/EVA-02">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVA-01 -->
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://github.com/baaivision/EVA/tree/master/EVA-01">EVA: Exploring the Limits of Masked Visual Representation Learning at Scale</a>
+                </div>
+                <div class="pub-authors">
+                    Yuxin Fang, Wen Wang, Binhui Xie, <span class="me">Quan Sun</span>, Ledell Wu, Xinggang Wang, Tiejun Huang, Xinlong Wang, Yue Cao
+                </div>
+                <div class="pub-meta">
+                    <span class="pub-venue">CVPR 2023 <span class="highlight-badge badge-spotlight">Highlight</span></span>
+                    <div class="pub-links">
+                        <a href="https://github.com/baaivision/EVA/tree/master/EVA-01">Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Experience -->
+<section>
+    <div class="container">
+        <div class="section-header">
+            <h2>💼 Experience</h2>
+            <div class="line"></div>
+        </div>
+        <div class="exp-list">
+            <div class="exp-item">
+                <span class="exp-time">2024 — Present</span>
+                <div class="exp-content">
+                    <h3>StepFun (阶跃星辰)</h3>
+                    <p class="role">Researcher & Engineer — Multimodal Intelligence Team</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <span class="exp-time">2022 — 2024</span>
+                <div class="exp-content">
+                    <h3>BAAI (北京智源人工智能研究院)</h3>
+                    <p class="role">Researcher — Vision Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>Quan Sun · quansun84@gmail.com</p>
+    </div>
+</footer>
+
+</body>
+</html>
