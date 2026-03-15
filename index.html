@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quan Sun is a researcher and engineer working on large-scale multimodal models, native multimodal architectures, and autoregressive image and video generation.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="Quan Sun | Researcher & Engineer">
+    <meta property="og:description" content="Research on large-scale multimodal models, native multimodal architectures, and generative visual intelligence.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quan-sun.github.io/">
+    <meta name="twitter:card" content="summary">
     <title>Quan Sun | Researcher & Engineer</title>
+    <link rel="canonical" href="https://quan-sun.github.io/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0a0a;
+            --bg-soft: #101114;
             --bg-card: #141414;
             --bg-card-hover: #1a1a1a;
             --text: #e8e8e8;
             --text-secondary: #888;
             --accent: #6c63ff;
+            --accent-strong: #948dff;
             --accent-glow: rgba(108, 99, 255, 0.15);
             --border: #222;
             --tag-bg: #1e1e2e;
@@ -38,6 +49,10 @@
             color: var(--text);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
         }
 
         /* Subtle grid background */
@@ -66,14 +81,19 @@
 
         /* ===== Header / Hero ===== */
         .hero {
-            padding: 80px 0 60px;
+            padding: 88px 0 72px;
             border-bottom: 1px solid var(--border);
         }
 
         .hero-content {
             display: flex;
+            align-items: stretch;
+            gap: 28px;
+        }
+
+        .avatar-wrap {
+            display: flex;
             align-items: flex-start;
-            gap: 36px;
         }
 
         .avatar {
@@ -88,34 +108,109 @@
             font-size: 48px;
             font-weight: 700;
             color: white;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px rgba(108, 99, 255, 0.25);
         }
 
+        .avatar::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(108, 99, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(108, 99, 255, 0.08);
+            color: var(--accent-strong);
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            box-shadow: 0 0 0 6px rgba(108, 99, 255, 0.12);
+        }
+
         .hero-text h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
 
+        .hero-text h1 span {
+            font-weight: 300;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
         .hero-text .tagline {
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             color: var(--text-secondary);
             margin-bottom: 16px;
             font-weight: 400;
+            max-width: 700px;
         }
 
         .hero-text .bio {
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.8;
-            max-width: 600px;
+            max-width: 640px;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+            max-width: 720px;
+        }
+
+        .metric-card {
+            padding: 14px 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .metric-card strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.98rem;
+            color: var(--text);
+        }
+
+        .metric-card span {
+            color: var(--text-secondary);
+            font-size: 0.82rem;
         }
 
         .hero-links {
             display: flex;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 24px;
             flex-wrap: wrap;
         }
 
@@ -126,9 +221,9 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.88rem;
-            padding: 6px 14px;
+            padding: 8px 14px;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.2s;
         }
 
@@ -138,9 +233,76 @@
             background: var(--accent-glow);
         }
 
+        .hero-links a.primary-link {
+            color: white;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--accent), #4f46e5);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.28);
+        }
+
+        .hero-links a.primary-link:hover {
+            color: white;
+            border-color: transparent;
+            background: linear-gradient(135deg, #7c74ff, #5b52eb);
+        }
+
         .hero-links a svg {
             width: 16px;
             height: 16px;
+        }
+
+        .hero-panel {
+            width: 280px;
+            padding: 22px;
+            background: linear-gradient(180deg, rgba(108, 99, 255, 0.12), rgba(108, 99, 255, 0.03));
+            border: 1px solid rgba(108, 99, 255, 0.18);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .panel-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-strong);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-panel h2 {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .hero-panel p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-panel ul {
+            list-style: none;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .hero-panel li {
+            position: relative;
+            padding-left: 16px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .hero-panel li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
         /* ===== Section ===== */
@@ -170,6 +332,156 @@
             flex: 1;
             height: 1px;
             background: var(--border);
+        }
+
+        .section-note {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            max-width: 720px;
+            margin-top: -12px;
+            margin-bottom: 24px;
+        }
+
+        /* ===== About ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 16px;
+        }
+
+        .about-card {
+            padding: 22px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .about-lead {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .about-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .about-points li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .about-points li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+        }
+
+        .focus-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .focus-tag {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--tag-bg);
+            border: 1px solid rgba(108, 99, 255, 0.16);
+            color: var(--tag-text);
+            font-size: 0.82rem;
+        }
+
+        /* ===== Featured Work ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .feature-card {
+            position: relative;
+            min-height: 100%;
+            overflow: hidden;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: all 0.25s;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.18), transparent 70%);
+            pointer-events: none;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: #333;
+            transform: translateY(-1px);
+        }
+
+        .feature-kicker {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--accent-strong);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .feature-card h3 {
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .feature-links {
+            position: relative;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .feature-links a {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            transition: all 0.2s;
+        }
+
+        .feature-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* ===== News ===== */
@@ -344,6 +656,13 @@
             color: var(--text-secondary);
         }
 
+        .exp-content p {
+            margin-top: 8px;
+            max-width: 640px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
         /* ===== Footer ===== */
         footer {
             padding: 40px 0;
@@ -352,24 +671,63 @@
             font-size: 0.82rem;
         }
 
+        footer p + p {
+            margin-top: 6px;
+        }
+
         /* ===== Responsive ===== */
+        @media (max-width: 960px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-panel {
+                width: auto;
+            }
+
+            .hero-metrics,
+            .about-grid,
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 640px) {
             .hero {
-                padding: 48px 0 40px;
+                padding: 56px 0 40px;
             }
 
             .hero-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+                align-items: stretch;
+                text-align: left;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 0 18px;
+            }
+
+            .avatar-wrap {
+                justify-content: flex-start;
+            }
+
+            .avatar {
+                width: 96px;
+                height: 96px;
+                border-radius: 18px;
+                font-size: 38px;
             }
 
             .hero-links {
-                justify-content: center;
+                justify-content: flex-start;
             }
 
             .hero-text h1 {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
+            }
+
+            .section-header {
+                align-items: flex-start;
             }
 
             .pub-meta {
@@ -379,6 +737,7 @@
 
             .pub-links {
                 margin-left: 0;
+                flex-wrap: wrap;
             }
 
             .exp-item {
@@ -407,19 +766,40 @@
 <header class="hero">
     <div class="container">
         <div class="hero-content">
-            <div class="avatar">QS</div>
+            <div class="avatar-wrap">
+                <div class="avatar">QS</div>
+            </div>
             <div class="hero-text">
-                <h1>Quan Sun <span style="font-weight:300; color: var(--text-secondary); font-size: 1.2rem;">孙泉</span></h1>
-                <p class="tagline">Researcher & Engineer at StepFun (阶跃星辰)</p>
+                <p class="eyebrow">Multimodal AI · Generative Systems</p>
+                <h1>Quan Sun <span>孙泉</span></h1>
+                <p class="tagline">Researcher & Engineer at StepFun (阶跃星辰), building native multimodal architectures and generative visual intelligence.</p>
                 <p class="bio">
                     I work on large-scale multimodal models, with a focus on unified multimodal native architectures. 
                     Previously at BAAI, where I was a core contributor to the EVA and Emu series. 
                     My research spans visual representation learning, generative multimodal models, and autoregressive image/video generation.
                 </p>
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <strong>13+ selected papers</strong>
+                        <span>Representative work spanning EVA, Emu, NextStep, and recent StepFun releases.</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong>Nature · ICLR Oral</strong>
+                        <span>Recent work recognized through flagship releases, top venues, and high-visibility research outputs.</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong>StepFun &amp; BAAI</strong>
+                        <span>Bridging long-horizon research with hands-on engineering and open model ecosystems.</span>
+                    </div>
+                </div>
                 <div class="hero-links">
-                    <a href="https://scholar.google.com/citations?user=pVKiHdEAAAAJ&hl=en">
+                    <a class="primary-link" href="https://scholar.google.com/citations?user=pVKiHdEAAAAJ&hl=en">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
                         Scholar
+                    </a>
+                    <a href="#featured-work">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.8 5.67 6.26.91-4.53 4.42 1.07 6.25L12 17.27l-5.6 2.98 1.07-6.25L2.94 9.58l6.26-.91z"/></svg>
+                        Featured Work
                     </a>
                     <a href="https://github.com/Quan-Sun">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -435,12 +815,132 @@
                     </a>
                 </div>
             </div>
+            <aside class="hero-panel">
+                <div class="panel-label">Current Focus</div>
+                <h2>Native multimodal models that unify understanding and generation.</h2>
+                <p>Recent work spans foundation model releases, continuous-token image generation, and multimodal systems built for both research depth and real deployment.</p>
+                <ul>
+                    <li>Large-scale multimodal model design and training</li>
+                    <li>Autoregressive image and video generation</li>
+                    <li>Research engineering from model ideas to open releases</li>
+                </ul>
+            </aside>
         </div>
     </div>
 </header>
 
+<!-- About -->
+<section id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2>✨ About</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <p class="about-lead">I focus on multimodal systems that natively connect language, vision, and generation in one architecture.</p>
+                <ul class="about-points">
+                    <li>Core contributor to the EVA and Emu series, covering both visual representation learning and generative multimodal models.</li>
+                    <li>Current work at StepFun emphasizes unified multimodal native architectures and research engineering that scales from model design to public release.</li>
+                    <li>I enjoy building systems that are not only strong on benchmarks, but also coherent as products, datasets, and open research artifacts.</li>
+                </ul>
+            </div>
+            <div class="about-card">
+                <div class="panel-label">Research Focus</div>
+                <div class="focus-tags">
+                    <span class="focus-tag">Multimodal Foundation Models</span>
+                    <span class="focus-tag">Visual Representation Learning</span>
+                    <span class="focus-tag">Autoregressive Generation</span>
+                    <span class="focus-tag">Image &amp; Video Models</span>
+                    <span class="focus-tag">Native Architectures</span>
+                    <span class="focus-tag">Research Engineering</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Work -->
+<section id="featured-work">
+    <div class="container">
+        <div class="section-header">
+            <h2>🚀 Featured Work</h2>
+            <div class="line"></div>
+        </div>
+        <p class="section-note">A few representative projects that show the range from frontier model releases to long-horizon multimodal research.</p>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <span class="feature-kicker">Open Release · 2026</span>
+                <h3>Step 3.5 Flash</h3>
+                <p>An open frontier-level intelligence model with 11B active parameters, balancing strong capability, multimodal breadth, and practical deployment efficiency.</p>
+                <div class="feature-links">
+                    <a href="https://arxiv.org/abs/2602.10604">Paper</a>
+                    <a href="https://github.com/stepfun-ai/Step-3.5-Flash">Code</a>
+                    <a href="https://huggingface.co/stepfun-ai/Step-3.5-Flash">Models</a>
+                </div>
+            </article>
+            <article class="feature-card">
+                <span class="feature-kicker">ICLR Oral · 2026</span>
+                <h3>NextStep-1</h3>
+                <p>Toward autoregressive image generation with continuous tokens at scale, pushing a clean and scalable path for next-generation visual generation models.</p>
+                <div class="feature-links">
+                    <a href="https://arxiv.org/abs/2508.10711">Paper</a>
+                    <a href="https://github.com/stepfun-ai/NextStep-1">Code</a>
+                    <a href="https://huggingface.co/collections/stepfun-ai/nextstep-1-689d80238a01322b93b8a3dc">Models</a>
+                </div>
+            </article>
+            <article class="feature-card">
+                <span class="feature-kicker">Nature · 2026</span>
+                <h3>Emu3</h3>
+                <p>A multimodal model trained solely with next-token prediction, highlighting a unified recipe for understanding and generation across modalities.</p>
+                <div class="feature-links">
+                    <a href="https://www.nature.com/articles/s41586-025-10041-x">Paper</a>
+                    <a href="https://github.com/baaivision/Emu3">Code</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header">
+            <h2>🧭 Experience</h2>
+            <div class="line"></div>
+        </div>
+        <p class="section-note">A short snapshot of the environments where I build and ship multimodal systems.</p>
+        <div class="exp-list">
+            <div class="exp-item">
+                <div class="exp-time">Current</div>
+                <div class="exp-content">
+                    <h3>StepFun</h3>
+                    <p class="role">Researcher &amp; Engineer</p>
+                    <p>Working on large-scale multimodal models with a focus on unified multimodal native architectures, frontier model releases, and autoregressive image/video generation.</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-time">Previously</div>
+                <div class="exp-content">
+                    <h3>BAAI</h3>
+                    <p class="role">Core contributor to EVA and Emu</p>
+                    <p>Contributed to large-scale visual representation learning and generative multimodal models, spanning the EVA and Emu series.</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-time">Themes</div>
+                <div class="exp-content">
+                    <h3>Research Interests</h3>
+                    <p class="role">Understanding, generation, and scalable training</p>
+                    <p>Research spans visual representation learning, generative multimodal models, and autoregressive image/video generation, with an emphasis on unified systems rather than disconnected modules.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- News -->
-<section>
+<section id="news">
     <div class="container">
         <div class="section-header">
             <h2>🔥 News</h2>
@@ -492,7 +992,7 @@
 </section>
 
 <!-- Selected Publications -->
-<section>
+<section id="publications">
     <div class="container">
         <div class="section-header">
             <h2>📄 Selected Publications</h2>
@@ -736,7 +1236,8 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <p>Quan Sun · quansun84@gmail.com</p>
+        <p>Quan Sun · Researcher &amp; Engineer at StepFun · quansun84@gmail.com</p>
+        <p>Focused on multimodal foundation models, native architectures, and generative visual intelligence.</p>
     </div>
 </footer>
 
