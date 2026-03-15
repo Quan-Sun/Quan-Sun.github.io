@@ -81,19 +81,19 @@
 
         /* ===== Header / Hero ===== */
         .hero {
-            padding: 88px 0 72px;
+            padding: 72px 0 56px;
             border-bottom: 1px solid var(--border);
         }
 
         .hero-content {
             display: flex;
-            align-items: stretch;
-            gap: 28px;
+            align-items: center;
+            gap: 24px;
         }
 
         .avatar-wrap {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .avatar {
@@ -125,31 +125,7 @@
         .hero-text {
             flex: 1;
             min-width: 0;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(108, 99, 255, 0.18);
-            border-radius: 999px;
-            background: rgba(108, 99, 255, 0.08);
-            color: var(--accent-strong);
-            font-size: 0.78rem;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            box-shadow: 0 0 0 6px rgba(108, 99, 255, 0.12);
+            max-width: 680px;
         }
 
         .hero-text h1 {
@@ -180,37 +156,10 @@
             max-width: 640px;
         }
 
-        .hero-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 24px;
-            max-width: 720px;
-        }
-
-        .metric-card {
-            padding: 14px 16px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .metric-card strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.98rem;
-            color: var(--text);
-        }
-
-        .metric-card span {
-            color: var(--text-secondary);
-            font-size: 0.82rem;
-        }
-
         .hero-links {
             display: flex;
             gap: 12px;
-            margin-top: 24px;
+            margin-top: 18px;
             flex-wrap: wrap;
         }
 
@@ -251,58 +200,12 @@
             height: 16px;
         }
 
-        .hero-panel {
-            width: 280px;
-            padding: 22px;
-            background: linear-gradient(180deg, rgba(108, 99, 255, 0.12), rgba(108, 99, 255, 0.03));
-            border: 1px solid rgba(108, 99, 255, 0.18);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-        }
-
         .panel-label {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
             color: var(--accent-strong);
             letter-spacing: 0.08em;
             text-transform: uppercase;
-        }
-
-        .hero-panel h2 {
-            font-size: 1.05rem;
-            line-height: 1.5;
-            margin: 10px 0;
-        }
-
-        .hero-panel p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-panel ul {
-            list-style: none;
-            margin-top: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .hero-panel li {
-            position: relative;
-            padding-left: 16px;
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-        }
-
-        .hero-panel li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 11px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
         }
 
         /* ===== Section ===== */
@@ -677,15 +580,6 @@
 
         /* ===== Responsive ===== */
         @media (max-width: 960px) {
-            .hero-content {
-                flex-direction: column;
-            }
-
-            .hero-panel {
-                width: auto;
-            }
-
-            .hero-metrics,
             .about-grid,
             .feature-grid {
                 grid-template-columns: 1fr;
@@ -698,7 +592,7 @@
             }
 
             .hero-content {
-                align-items: stretch;
+                align-items: flex-start;
                 text-align: left;
                 gap: 20px;
             }
@@ -770,7 +664,6 @@
                 <div class="avatar">QS</div>
             </div>
             <div class="hero-text">
-                <p class="eyebrow">Multimodal AI · Generative Systems</p>
                 <h1>Quan Sun <span>孙泉</span></h1>
                 <p class="tagline">Researcher & Engineer at StepFun (阶跃星辰), building native multimodal architectures and generative visual intelligence.</p>
                 <p class="bio">
@@ -778,36 +671,14 @@
                     Previously at BAAI, where I was a core contributor to the EVA and Emu series. 
                     My research spans visual representation learning, generative multimodal models, and autoregressive image/video generation.
                 </p>
-                <div class="hero-metrics">
-                    <div class="metric-card">
-                        <strong>13+ selected papers</strong>
-                        <span>Representative work spanning EVA, Emu, NextStep, and recent StepFun releases.</span>
-                    </div>
-                    <div class="metric-card">
-                        <strong>Nature · ICLR Oral</strong>
-                        <span>Recent work recognized through flagship releases, top venues, and high-visibility research outputs.</span>
-                    </div>
-                    <div class="metric-card">
-                        <strong>StepFun &amp; BAAI</strong>
-                        <span>Bridging long-horizon research with hands-on engineering and open model ecosystems.</span>
-                    </div>
-                </div>
                 <div class="hero-links">
                     <a class="primary-link" href="https://scholar.google.com/citations?user=pVKiHdEAAAAJ&hl=en">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
                         Scholar
                     </a>
-                    <a href="#featured-work">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.8 5.67 6.26.91-4.53 4.42 1.07 6.25L12 17.27l-5.6 2.98 1.07-6.25L2.94 9.58l6.26-.91z"/></svg>
-                        Featured Work
-                    </a>
                     <a href="https://github.com/Quan-Sun">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
                         GitHub
-                    </a>
-                    <a href="https://twitter.com/QuanSun6">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        Twitter
                     </a>
                     <a href="mailto:quansun84@gmail.com">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -815,16 +686,6 @@
                     </a>
                 </div>
             </div>
-            <aside class="hero-panel">
-                <div class="panel-label">Current Focus</div>
-                <h2>Native multimodal models that unify understanding and generation.</h2>
-                <p>Recent work spans foundation model releases, continuous-token image generation, and multimodal systems built for both research depth and real deployment.</p>
-                <ul>
-                    <li>Large-scale multimodal model design and training</li>
-                    <li>Autoregressive image and video generation</li>
-                    <li>Research engineering from model ideas to open releases</li>
-                </ul>
-            </aside>
         </div>
     </div>
 </header>
